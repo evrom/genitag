@@ -1,0 +1,66 @@
+{% extends 'layouts/interface.html' %}
+{% block content %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ event_data.title }}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+	<small>
+	  When (localtime)
+	</small>
+	<p>
+	  {{ event_data.event_datetime.strftime("%I:%M%p %A, %B %d (%Y/%m/%d)") }}
+	</p>
+      </div>
+      <div class="col-md-4">
+	<small>
+	  Location
+	</small>
+	<p>
+	  {{ event_data.location }}
+	</p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-8">
+	 <p>
+	   {{ event_data.info | urlize }}
+	 </p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-8">
+	<small>
+	  Map (<a href="https://www.google.com/maps/place/{{ event_data.location | urlencode }}">Google Map</a>)
+	</small>
+	<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ event_data.location | urlencode }}&zoom=18&size=480x360&markers={{ event_data.location | urlencode }}&key=AIzaSyA1iWW6xEt12H5tNh8_kfczyYu2KSV25uM&maptype=terrain" class="img-responsive img-rounded" alt="Responsive image"/>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-4">
+	<small>
+	  Posted by
+	</small>
+	<p>
+	  <a href="/profile/{{event_data.user_id}}">
+	    {{ event_data.user_id }}
+	  </a>
+	</p>
+      </div>
+      <div class="col-md-4">
+	<small>
+	  Posted on (UTC)
+	</small>
+	<p>
+	  {{ event_data.timestamp.strftime("%I:%M%p (%Y/%m/%d)") }}
+	</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

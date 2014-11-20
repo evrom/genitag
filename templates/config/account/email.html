@@ -1,0 +1,26 @@
+{% extends 'layouts/config_account.html' %}
+{% from 'macros/bootstrapform.html' import render_field %}
+{% block configcontent %}
+
+<h3>
+  Current Email:
+</h3>
+<p>
+  {{ email }}
+</p>
+<p>
+  Submit a new email address. An email will be sent to the address to confirm ownership of the email. The email address will be changed upon clicking a link sent to that email. Current password is required for this operation. Email may be misclassified as spam.
+</p>
+<div class="col-md-6">
+  <form action="/config/account/email" method="post">
+    {{ form.csrf_token }}
+    <dl>
+      {{ render_field(form.email) }}
+    </dl>
+    <input type=submit class="btn btn-default" value="Update">
+  </form>
+</div>
+
+{% endblock %}
+
+

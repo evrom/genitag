@@ -1,0 +1,45 @@
+{% extends 'layouts/config_profile.html' %}
+{% from 'macros/bootstrapform.html' import render_field %}
+{% block configcontent %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Profile Avatar
+  </div>
+  <div class="panel-body">
+    <div class="col-md-6">
+      <form action="/config/profile/contactemail?action=update" method="post">
+	{{ form.csrf_token }}
+	<dl>
+	  {{ render_field(form.contactemail) }}
+	  <div>
+	    <ul id="hide">
+	      <li>
+		<input id="hide-0" name="hide" type="radio" value="hide" {% if initial.hide_selected %}checked{% endif %}>
+		<label for="hide-0">
+		  hide
+		</label>
+	      </li>
+	      <li>
+		<input id="hide-1" name="hide" type="radio" value="plaintext" {% if not initial.hide_selected %}checked{% endif %}>
+		<label for="hide-1">
+		  plaintext
+		</label>
+	      </li>
+	    </ul>
+	  </div>
+	  {{ render_field(form.pgpmirror) }}
+	  {{ render_field(form.pgpfingerprint) }}
+	</dl>
+	<input type=submit class="btn btn-default" value="Update">
+      </form>
+      <hr />
+      <form action="/config/profile/contactemail?action=delete" method="post">
+	{{ form.csrf_token }}
+	<input type=submit class="btn btn-default" value="Delete Fields">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

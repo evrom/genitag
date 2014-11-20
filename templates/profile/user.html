@@ -1,0 +1,144 @@
+{% extends 'layouts/interface.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10"><h1>Evrom <small>{{ result.name }}</small></h1></div>
+    <div class="col-sm-2">
+      <div class="center-block">
+	<img title="profile image" class="img-circle img-responsive" src="{{ result.avatar_url }}" height="96" width="96">
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-sm-9">
+      <h3>Im good at</h3>
+      <p>Making sites like this</p>
+      <h3>I care about</h3>
+      <p>This shit</p>
+      <h3>Contact me</h3>
+      <p>if you want. Use the email</p>
+      <hr />
+      <h3>Skills</h3>
+      <ul class="list-inline">
+	{% for your_skill in your_skills %}
+	<li>
+	  <button type="button" class="btn btn-success btn-sm skill" id="skillid{{ your_skill.id }}">
+	    {{ your_skill.en }}
+	  </button>
+	</li>
+	<div id="skillid{{ your_skill.id }}_ex" class="collapse skill_ex" aria-expanded="false">
+          <h4>
+	    {{ your_skill.en }}
+	  </h4>
+	  <p>
+	    {{ your_skill.description }}
+	  </p>
+	</div>
+	{% endfor %}
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <ul class="list-group">
+	{% if result.location %}
+	<li class="list-group-item text-right">
+	  <span class="pull-left">
+	    <strong>
+	      Location
+	    </strong>
+	  </span>
+	  {{ result.location }}
+	</li>
+	{% endif %}
+	{% if result.contactemail %}
+	<ul class="list-group-item list-unstyled">
+	  <li class="text-right">
+	    <span class="pull-left">
+	      <strong>
+		Email
+	      </strong>
+	    </span>
+	    {{ result.contactemail }}
+	  </li>
+	  {% if result.pgpmirror %}
+	  <li class="text-right">
+	    <span class="pull-left">
+	      <strong>
+		PGP Key
+	      </strong>
+	    </span>
+	    <a href="{{ result.pgpmirror }}">
+	      Mirror
+	    </a>
+	    <small>
+	      ({{ result.pgpmirror_netloc }})
+	    </small>
+	  </li>
+	  {% endif %}
+	  {% if result.pgpfingerprint %}
+	  <li class="text-right">
+	    <span class="pull-left">
+	      <strong>
+		PGP Fingerprint
+	      </strong>
+	    </span>
+	    <p>
+	      <small>
+		{{ result.pgpfingerprint }}
+	      </small>
+	    </p>
+	  </li>
+	  {% endif %}
+	</ul>
+	{% endif %}
+	{% if result.website_url %}
+	<li class="list-group-item text-right">
+	  <span class="pull-left">
+	    <strong>
+	      Website
+	    </strong>
+	  </span>
+	  <a href="{{ result.website_url }}">
+	    {{ result.website_url }}
+	  </a>
+	</li>
+	{% endif %}
+	{% if result.twittername %}
+	<li class="list-group-item text-right">
+	  <span class="pull-left">
+	    <strong>
+	      Twitter
+	    </strong>
+	  </span>
+	  <a href="http://www.twitter.com/{{ result.twittername }}">
+	    {{ result.twittername }}
+	  </a>
+	</li>
+	{% endif %}
+	{% if result.githubname %}
+	<li class="list-group-item text-right">
+	  <span class="pull-left">
+	    <strong>
+	      Github
+	    </strong>
+	  </span>
+	  <a href="http://www.github.com/{{ result.githubname }}">
+	    {{ result.githubname }}
+	  </a>
+	</li>
+	{% endif %}
+      </ul> 
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+ $(document).ready(function(){
+   $(".skill").click(function(){
+     $(".skill_ex:not(#"+$(this).attr('id')+"_ex").hide();
+     $("#"+$(this).attr('id')+"_ex").toggle();
+   });
+ });
+</script>
+{% endblock %}

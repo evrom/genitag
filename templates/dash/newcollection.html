@@ -1,0 +1,7 @@
+{% extends 'layouts/dash.html' %}
+{% from 'macros/bootstrapform.html' import render_form %}
+{% block dashcontent %}
+<div class="col-md-6">
+  {{ render_form(form, action_url='/dash/newcollection', action_text='Add') }}
+</div>
+{% endblock %}

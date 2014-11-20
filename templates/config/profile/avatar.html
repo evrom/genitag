@@ -1,0 +1,61 @@
+{% extends 'layouts/config_profile.html' %}
+{% block configcontent %}
+<div class="panel panel-default">
+  <div class="panel-heading">Profile Avatar</div>
+  <div class="panel-body">
+    <form action="/config/profile/avatar?action=update" method="post">
+      {{ form.csrf_token }}
+      <div class="row">
+	<div class="col-md-4">
+	  <input type="radio" name="avatar_type" id="gravatar" value="gravatar" {% if not use_custom_avatar %}checked{% endif %}>
+	  <label for="gravatar">
+	    Use <a href="http://www.gravatar.com/">Gravatar</a>
+	  </label>
+	</div>
+	<div class="col-md-8">
+	  <img src="{{ gravatar_url }}" />
+	</div>
+      </div>
+      <hr />
+      <div class="row">
+	<div class="col-md-4">
+	  <input type="radio" name="avatar_type" id="avatarsio" value="avatarsio" {% if use_custom_avatar %}checked{% endif %}>
+	  <input type="hidden" name="avatar_url" id="custom_avatar_url" value="{{ custom_avatar_url }}">
+	  <label for="avatarsio">
+	    Use Custom Profile Avatar
+	  </label>
+	</div>
+	<div class="col-md-8">
+	  <div>
+	    <img src="{{ custom_avatar_url }}?size=large" id="custom_avatar" height="128" width="128">
+	    <input type="file" id="avatar">
+	  </div>
+	</div>
+      </div>
+      <input type=submit class="btn btn-default" value="Update">
+    </form>
+    <hr />
+    <form action="/config/profile/avatar?action=delete" method="post">
+      {{ form.csrf_token }}
+      <input type=submit class="btn btn-default" value="Delete Fields">
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/avatars.io.min.js"></script>
+<script>
+ var client = new AvatarsIO('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcml2YXRlX3Rva2VuIjoiYWE2ODgyODcxMDBkZmVlMmY2YTgxMjRiZjA2MTI1NTAxOTFhMDFhNmZhM2ExNTlhYzJhODZkNDc5YjZmNDY5MyJ9.jeM9KKFIm_3gE0tZZobGjMp06F4c5Eratijy8O6-boY');
+ $(function(){
+   var uploader = client.create('#avatar'); 
+   uploader.setAllowedExtensions(['png', 'jpg']);
+   uploader.on('complete', function(url){
+     avatar_url= url+'?size=large';
+     $('#custom_avatar').attr('src', avatar_url);
+     $('#custom_avatar_url').attr('value', url); 
+   });
+ });
+</script>
+{% endblock %}
+14MZdDnmkh

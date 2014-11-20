@@ -1,0 +1,17 @@
+{% extends 'layouts/interface.html' %}
+{% from 'macros/bootstrapform.html' import render_form %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h2>
+      Event Title
+    </h2>
+    <p>{{ datetime.strftime('%A %B, %d (%Y-%m-%d) @%I:%M %p %Z (localtime)') }}</p>
+  </div>
+  <div class="col-md-4">
+    <img src="https://maps.googleapis.com/maps/api/staticmap?center=New+York,NY&zoom=18&size=480x360&markers=New+York,NY&key=AIzaSyA1iWW6xEt12H5tNh8_kfczyYu2KSV25uM&maptype=terrain" class="img-responsive img-rounded" alt="Responsive image"/>
+  </div>
+</div>
+<p>{{ description|urlize }}</p>
+{% endblock %}
+

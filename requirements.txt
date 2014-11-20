@@ -1,0 +1,11 @@
+bottle==0.12.7
+Jinja2==2.7.3
+pymysql==0.6.2
+WTForms==2.0.1
+itsdangerous==0.24
+SQLAlchemy==0.9.8
+wtforms-recaptcha==0.3.2
+Passlib==1.6.2
+pyGravatar==0.0.6
+
+mandrill==1.0.57

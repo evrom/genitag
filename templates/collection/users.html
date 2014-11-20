@@ -1,0 +1,33 @@
+{% extends 'layouts/collection.html' %}
+{% block collectioncontent %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>username
+      </th>
+      <th>admin
+      </th>
+      <th>write
+      </th>
+      <th>execute
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>
+	<a href="/collection/{{ collection.collection_id }}/user?id={{ item.user_id }}">{{ item.user_id }}
+	</a>
+      </td>
+      <td>{{item.admin }}
+      </td>
+      <td>{{ item.write }}
+      </td>
+      <td>{{ item.execute }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

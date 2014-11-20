@@ -1,0 +1,31 @@
+{% extends 'layouts/interface.html' %}
+{% block content %}
+<a href="/config"><span class="octicon octicon-arrow-up"></span>Back to configuration main menu</a>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	Change Account Settings
+      </div>
+      <div class="panel-body">
+	<ul class="nav nav-pills nav-stacked">
+	  <li>
+	    <a href="/config/account/email">
+	      Change Email
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/account/password">
+	      Password
+	    </a>
+	  </li>
+	</ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    {% block configcontent %}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}

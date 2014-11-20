@@ -1,0 +1,27 @@
+{% extends 'layouts/config_skills.html' %}
+{% from 'macros/bootstrapform.html' import render_field %}
+{% block configcontent %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    {{ skill_name }}
+  </div>
+  <div class="panel-body">
+    <div class="col-md-6">
+      <form action="/config/skills/skill?id={{ skill_id }}&action=update" method="post">
+	{{ form.csrf_token }}
+	<dl>
+	  {{ render_field(form.description, rows="8") }}
+	</dl>
+	<input type=submit class="btn btn-default" value="Update">
+      </form>
+      <hr />
+      <form action="/config/skills/skill?id={{ skill_id }}&action=delete" method="post">
+	{{ form.csrf_token }}
+	<input type=submit class="btn btn-default" value="Remove Skill">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

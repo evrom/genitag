@@ -1,0 +1,49 @@
+{% extends 'layouts/main.html' %} 
+{% block body %}
+<div id="TopNavbar" class="navbar navbar-default">
+  <div class="navbar-header">
+    <a href="/" class="navbar-brand">Genitag</a>
+    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse" id="navbar-main">
+    <ul class="nav navbar-nav navbar-right">
+      {% if session.u %}
+      <li><a href="/profile/{{ session.u }}">{{ session.u }}</a></li>
+       <li><a href="/config" data-placement="bottom" data-toggle="tooltip" class="tip-bottom" data-original-title="Config"><span class="octicon octicon octicon-gear"></span></a></li>
+      <li><a href="/exit" data-placement="bottom" data-toggle="tooltip" class="tip-bottom" data-original-title="Exit"><span class="octicon octicon-sign-out"></span></a></li>
+      {% else %}
+      <li><a href="/newuser">Register</a></li>
+      <li><a href="/tour">Tour</a></li>
+      <li><a href="/login">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+<div class="container">
+  {% if status.success %}
+  <div class="alert alert-success" role="alert">{{ status.success }}</div>
+  {% endif %}
+  {% if status.info %}
+  <div class="alert alert-info" role="alert">{{ status.info }}</div>
+  {% endif %}
+  {% if status.warning %}
+  <div class="alert alert-warning" role="alert">{{ status.warning }}</div>
+  {% endif %}
+  {% if status.danger %}
+  <div class="alert alert-danger" role="alert">{{ status.danger }}</div>
+  {% endif %}
+  {% block content %}
+  {% endblock %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+ $(document).ready(function(){
+   $(".tip-bottom").tooltip({placement : 'bottom'});
+ });
+</script>
+{% endblock %}

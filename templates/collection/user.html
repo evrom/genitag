@@ -1,0 +1,81 @@
+{% extends 'layouts/collection.html' %}
+{% block collectioncontent %}
+<h1>{{ item.user_id }}</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>admin
+      </th>
+      <th>write
+      </th>
+      <th>execute
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if collection.admin %}
+    <tr>
+      <td>
+	{% if item.admin %}
+	<form action="/collection/{{ collection.collection_id }}/user?id={{ item.user_id }}" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="permission" value="admin"> 
+	  <input type="hidden" name="grant" value="False"> 
+	  <input type=submit class="btn btn-danger btn-sm" value="Revoke">
+	</form>
+	{% else %}
+	<form action="/collection/{{ collection.collection_id }}/user?id={{ item.user_id }}" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="permission" value="admin"> 
+	  <input type="hidden" name="grant" value="True"> 
+	  <input type=submit class="btn btn-success btn-sm" value="Grant">
+	</form>
+	{% endif %}
+      </td>
+      <td>
+	{% if item.write %}
+	<form action="/collection/{{ collection.collection_id }}/user?id={{ item.user_id }}" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="permission" value="write"> 
+	  <input type="hidden" name="grant" value="False"> 
+	  <input type=submit class="btn btn-danger btn-sm" value="Revoke">
+	</form>
+	{% else %}
+	<form action="/collection/{{ collection.collection_id }}/user?id={{ item.user_id }}" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="permission" value="write"> 
+	  <input type="hidden" name="grant" value="True"> 
+	  <input type=submit class="btn btn-success btn-sm" value="Grant">
+	</form>
+	{% endif %}
+      </td>
+      <td>
+	{% if item.execute %}
+	<form action="/collection/{{ collection.collection_id }}/user?id={{ item.user_id }}" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="permission" value="execute"> 
+	  <input type="hidden" name="grant" value="False"> 
+	  <input type=submit class="btn btn-danger btn-sm" value="Revoke">
+	</form>
+	{% else %}
+	<form action="/collection/{{ collection.collection_id }}/user?id={{ item.user_id }}" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="permission" value="execute"> 
+	  <input type="hidden" name="grant" value="True"> 
+	  <input type=submit class="btn btn-success btn-sm" value="Grant">
+	</form>
+	{% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    <tr>
+      <td>{{item.admin }}
+      </td>
+      <td>{{ item.write }}
+      </td>
+      <td>{{ item.execute }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

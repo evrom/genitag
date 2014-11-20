@@ -1,0 +1,73 @@
+{% extends 'layouts/interface.html' %}
+{% block content %}
+<a href="/config"><span class="octicon octicon-arrow-left"></span>Back to configuration main menu</a>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	Edit Profile
+      </div>
+      <div class="panel-body">
+	<ul class="nav nav-pills nav-stacked">
+	  <li>
+	    <a href="/config/profile/name">
+	      Name
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/profile/avatar">
+	      Avatar
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/profile/location">
+	      Location
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/profile/contactemail">
+	      Contact Email
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/profile/twitter">
+	      Twitter
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/profile/github">
+	      Github
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/profile/website">
+	      Website
+	    </a>
+	  </li>
+	</ul>
+      </div>
+      <div class="panel-heading">
+	Edit Account
+      </div>
+      <div class="panel-body">
+	<ul class="nav nav-pills nav-stacked">
+	  <li>
+	    <a href="/config/password">
+	      Change Password
+	    </a>
+	  </li>
+	  <li>
+	    <a href="/config/accountemail">
+	      Change Email
+	    </a>
+	  </li>
+	</ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    {% block configcontent %}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}

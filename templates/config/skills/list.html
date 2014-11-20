@@ -1,0 +1,38 @@
+{% extends 'layouts/config_skills.html' %}
+{% block configcontent %}
+<h2>
+  Select a skill to add it
+</h2>
+<h3>Technology</h3>
+<ul>
+  {% for skill in technology %}
+  <li>
+    <a class="text-primary" href="/config/skills/skill?id={{ skill.id }}">
+      {{ skill.en }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+<h3>Media</h3>
+<ul>
+  {% for skill in media %}
+  <li>
+    <a class="text-primary" href="/config/skills/skill?id={{ skill.id }}">
+      {{ skill.en }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+<h3>Language</h3>
+<ul>
+  {% for skill in language %}
+  <li>
+    <a class="text-primary" href="/config/skills/skill?id={{ skill.id }}">
+      {{ skill.en }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+

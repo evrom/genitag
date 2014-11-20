@@ -1,0 +1,27 @@
+{% extends 'layouts/config_profile.html' %}
+{% from 'macros/bootstrapform.html' import render_field %}
+{% block configcontent %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Location
+  </div>
+  <div class="panel-body">
+    <div class="col-md-6">
+      <form action="/config/profile/location?action=update" method="post">
+	{{ form.csrf_token }}
+	<dl>
+	  {{ render_field(form.location) }}
+	</dl>
+	<input type=submit class="btn btn-default" value="Update">
+      </form>
+      <hr />
+      <form action="/config/profile/location?action=delete" method="post">
+	{{ form.csrf_token }}
+	<input type=submit class="btn btn-default" value="Delete Fields">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

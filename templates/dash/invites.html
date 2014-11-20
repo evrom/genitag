@@ -1,0 +1,47 @@
+{% extends 'layouts/dash.html' %}
+{% block dashcontent %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Collection
+      </th>
+      <th>from
+      </th>
+      <th>at
+      </th>
+      <th>accept
+      </th>
+      <th>deny
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.title }}
+      </td>
+      <td>{{ item.admin_user_id }}
+      </td>
+      <td>{{ item.timestamp }}
+      </td>
+      <td>
+	<form action="/dash/invite" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="collection" value="{{ item.signed_collection_id }}"> 
+	  <input type="hidden" name="accept" value="True"> 
+	  <input type=submit class="btn btn-success btn-sm" value="Accept">
+	</form>
+      </td>
+      <td>
+	<form action="/dash/invite" method="post">
+	  {{ form.csrf_token }}
+	  <input type="hidden" name="collection" value="{{ item.signed_collection_id }}">
+	  <input type="hidden" name="accept" value="False"> 
+	  <input type=submit class="btn btn-danger btn-sm" value="Decline">
+	</form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

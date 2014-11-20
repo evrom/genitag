@@ -1,0 +1,28 @@
+{% extends 'layouts/collection.html' %}
+{% block collectioncontent %}
+<a href="/collection/{{ collection.collection_id }}/newinvite" class="btn btn-primary">New Invite</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>username
+      </th>
+      <th>added by
+      </th>
+      <th>at
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.user_id }}
+      </td>
+      <td>{{ item.admin_user_id }}
+      </td>
+      <td>{{ item.timestamp }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
