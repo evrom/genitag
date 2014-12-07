@@ -19,20 +19,8 @@ def index_page():
     form = Form(request.forms)
     username = open_session()['u']
     if request.method == 'POST' and form.validate():
-        conn = db.engine.connect()
-        result = conn.execute(
-            select([
-                users.c.pbkdf2]).where(
-                    users.c.id == username))
-        conn.close()
-        row = result.fetchone()
-        verify = pbkdf2_sha256.verify(
-            form.password.data, row['pbkdf2'])
-        if verify:
-            change_email(username, form.email.data)
-            status.success = "Sending email to " + form.email.data
-        else:
-            status.warning = "Wrong password for this account"
+        change_email(username, form.email.data)
+        status.success = "Sending email to " + form.email.data
     conn = db.engine.connect()
     result = conn.execute(
         select([

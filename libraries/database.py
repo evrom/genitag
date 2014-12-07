@@ -2,14 +2,10 @@ from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer,\
     String, MetaData, ForeignKey, LargeBinary,\
     Boolean, DateTime, func, Float, UniqueConstraint
-from configparser import ConfigParser
+from configuration import config
 from datetime import datetime as timestamp
 from sqlalchemy.sql import expression
-import os
-directory = os.path.dirname(__file__)
-filename = os.path.join(directory, '../config.ini')
-config = ConfigParser()
-config.read(filename)
+
 database_uri = config['app']['SQLALCHEMY_DATABASE_URI']
 username_length = int(config['app']['USERNAME_LENGTH'])
 

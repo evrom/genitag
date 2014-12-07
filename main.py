@@ -1,8 +1,6 @@
 from bottle import Bottle
-from configparser import ConfigParser
+from configuration import config
 from routes import routes
-config = ConfigParser()
-config.read('./config.ini')
 port = config['app']['port']
 host = config['app']['host']
 development_mode = config['app']['development_mode']

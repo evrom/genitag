@@ -9,7 +9,7 @@ from libraries.database import skill_index, user_skills
 from libraries.config.skills.forms import Skill as Form
 from libraries.forms import Blank as BlankForm
 from libraries.session import open_session
-from libraries.replace import skill as skill_replace
+from libraries.config.skills.replace import skill as skill_replace
 app = Bottle()
 
 

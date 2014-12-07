@@ -2,12 +2,7 @@ from wtforms import StringField, validators, PasswordField
 from wtfrecaptcha.fields import RecaptchaField
 from libraries.endemic.form import MyBaseForm as Form
 from libraries.regex import username
-from configparser import ConfigParser
-import os
-directory = os.path.dirname(__file__)
-filename = os.path.join(directory, '../../config.ini')
-config = ConfigParser()
-config.read(filename)
+from configuration import config
 
 username_length = int(config['app']['USERNAME_LENGTH'])
 recaptcha_pub_key = config['app']['RECAPTCHA_PUB_KEY']
@@ -40,3 +35,8 @@ class Login(Form):
     loginname = StringField('Email or Username',
                             [validators.Required()])
     password = PasswordField('Password', [validators.Required()])
+
+
+class PasswordReset(Form):
+    loginname = StringField('Email or Username',
+                            [validators.Required()])

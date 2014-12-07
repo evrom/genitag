@@ -5,7 +5,7 @@ from libraries.endemic.form import MyBaseForm as Form
 
 class Email(Form):
     email = StringField('Email', [validators.Email()])
-    password = PasswordField('Password', [validators.Required()])
+    # password = PasswordField('Password', [validators.Required()])
 
 
 class Password(Form):

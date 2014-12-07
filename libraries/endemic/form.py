@@ -1,13 +1,9 @@
 from wtforms import Form
 from wtforms.csrf.core import CSRF
-from configparser import ConfigParser
-import os
+from configuration import config
 from bottle import response, request
 import base64
-directory = os.path.dirname(__file__)
-filename = os.path.join(directory, '../../config.ini')
-config = ConfigParser()
-config.read(filename)
+import os
 secret_key = config['app']['SECRET_KEY']
 csrf_cookie_name = config['app']['CSRF_COOKIE_NAME']
 salt = config['app']['CSRF_TOKEN_SALT']

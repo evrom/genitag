@@ -1,12 +1,7 @@
 from itsdangerous import URLSafeSerializer
 from bottle import abort
-from configparser import ConfigParser
-import os
+from configuration import config
 
-directory = os.path.dirname(__file__)
-filename = os.path.join(directory, '../config.ini')
-config = ConfigParser()
-config.read(filename)
 secret_key = config['app']['SECRET_KEY']
 
 salt = 'signed'
