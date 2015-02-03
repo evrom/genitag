@@ -15,7 +15,6 @@ contactemail = text(
     "UPDATE users SET "
     "info = COLUMN_DELETE(info, "
     "'contactemail', "
-    "'hide', "
     "'pgpmirror', "
     "'pgpfingerprint' "
     ") "
@@ -63,6 +62,33 @@ name = text(
     "UPDATE users SET "
     "info = COLUMN_DELETE(info, "
     "'name'"
+    ") "
+    "WHERE id=:username"
+    ";"
+)
+
+imgoodat = text(
+    "UPDATE users SET "
+    "info = COLUMN_DELETE(info, "
+    "'imgoodat'"
+    ") "
+    "WHERE id=:username"
+    ";"
+)
+
+icareabout = text(
+    "UPDATE users SET "
+    "info = COLUMN_DELETE(info, "
+    "'icareabout'"
+    ") "
+    "WHERE id=:username"
+    ";"
+)
+
+contactme = text(
+    "UPDATE users SET "
+    "info = COLUMN_DELETE(info, "
+    "'contactme'"
     ") "
     "WHERE id=:username"
     ";"

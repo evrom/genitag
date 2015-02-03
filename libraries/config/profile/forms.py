@@ -1,4 +1,5 @@
-from wtforms import StringField, validators, RadioField, HiddenField
+from wtforms import StringField,\
+    validators, RadioField, HiddenField, TextAreaField
 from libraries.endemic.form import MyBaseForm as Form
 
 
@@ -14,8 +15,6 @@ class Avatar(Form):
 
 class ContactEmail(Form):
     contactemail = StringField('Email', [validators.Email()])
-    hide = RadioField('Hide Email with Recaptcha',
-                      choices=[('hide', 'hide'), ('plaintext', 'plaintext')])
     pgpmirror = StringField('Optional: PGP Mirror (URL)', [
         validators.URL(),
         validators.Optional()])
@@ -64,3 +63,22 @@ class Website(Form):
 class Name(Form):
     name = StringField('Name',
                        [validators.Length(min=1, max=35)])
+
+
+class ImGoodAt(Form):
+    description = TextAreaField('What things are you good at? '
+                                'Describe your experiences and '
+                                'link portfolios of your work',
+                                [validators.Length(min=1, max=350)])
+
+
+class ICareAbout(Form):
+    description = TextAreaField('What things do you care about?',
+                                [validators.Length(min=1, max=350)])
+
+
+class ContactMe(Form):
+    description = TextAreaField('In what situation would you like '
+                                'to be contacted? How should someone '
+                                'contact you?',
+                                [validators.Length(min=1, max=350)])

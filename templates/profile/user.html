@@ -13,11 +13,11 @@
   <div class="row">
     <div class="col-sm-9">
       <h3>Im good at</h3>
-      <p>Making sites like this</p>
+      <p>{{ result.imgoodat | urlize }}</p>
       <h3>I care about</h3>
-      <p>This shit</p>
+      <p>{{ result.icareabout | urlize }}</p>
       <h3>Contact me</h3>
-      <p>if you want. Use the email</p>
+      <p>{{ result.contactme | urlize }}</p>
       <hr />
       <h3>Skills</h3>
       <ul class="list-inline">
@@ -32,7 +32,7 @@
 	    {{ your_skill.en }}
 	  </h4>
 	  <p>
-	    {{ your_skill.description }}
+	    {{ your_skill.description | urlize}}
 	  </p>
 	</div>
 	{% endfor %}

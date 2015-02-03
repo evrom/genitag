@@ -15,7 +15,6 @@ contactemail = text(
     "UPDATE users SET "
     "info = COLUMN_ADD(info, "
     "'contactemail', :contactemail AS CHAR, "
-    "'hide', :hide AS INTEGER, "
     "'pgpmirror', :pgpmirror AS CHAR,"
     "'pgpfingerprint', :pgpfingerprint AS CHAR"
     ") "
@@ -63,6 +62,33 @@ name = text(
     "UPDATE users SET "
     "info = COLUMN_ADD(info, "
     "'name', :name AS CHAR"
+    ") "
+    "WHERE id=:username"
+    ";"
+)
+
+imgoodat = text(
+    "UPDATE users SET "
+    "info = COLUMN_ADD(info, "
+    "'imgoodat', :description AS CHAR"
+    ") "
+    "WHERE id=:username"
+    ";"
+)
+
+icareabout = text(
+    "UPDATE users SET "
+    "info = COLUMN_ADD(info, "
+    "'icareabout', :description AS CHAR"
+    ") "
+    "WHERE id=:username"
+    ";"
+)
+
+contactme = text(
+    "UPDATE users SET "
+    "info = COLUMN_ADD(info, "
+    "'contactme', :description AS CHAR"
     ") "
     "WHERE id=:username"
     ";"

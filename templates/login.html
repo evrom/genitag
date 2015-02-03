@@ -7,6 +7,8 @@
     <div class="panel-heading"><h3 class="panel-title"><strong>Sign In </strong></h3></div>
     <div class="panel-body">
       {{ render_form(form, action_url='/login', action_text='Sign In') }}
+      <p><a href="/action/resend">Resend email verification</a></p>
+      <p><a href="/action/resetpassword">Reset Password</a></p>
     </div>
   </div>
 </div>

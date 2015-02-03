@@ -2,6 +2,9 @@ from sqlalchemy.sql import text
 
 profile = text(
     "SELECT "
+    "COLUMN_GET(info, 'imgoodat' AS CHAR) as imgoodat, "
+    "COLUMN_GET(info, 'icareabout' AS CHAR) as icareabout, "
+    "COLUMN_GET(info, 'contactme' AS CHAR) as contactme, "
     "COLUMN_GET(info, 'contactemail' AS CHAR) as contactemail, "
     "COLUMN_GET(info, 'hide' AS INTEGER) as hide, "
     "COLUMN_GET(info, 'pgpmirror' AS CHAR) as pgpmirror, "

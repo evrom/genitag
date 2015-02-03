@@ -4,20 +4,17 @@ from libraries.database import engine as db
 from libraries.template import view
 from libraries.status import Status
 from libraries.authentication import login_required
-from libraries.config.profile.forms import ContactEmail as Form
+from libraries.config.profile.forms import ImGoodAt as Form
 from libraries.forms import Blank as BlankForm
-from libraries.config.profile.insert import\
-    contactemail as contactemail_insert
-from libraries.config.profile.select import\
-    contactemail as contactemail_select
-from libraries.config.profile.delete import\
-    contactemail as contactemail_delete
+from libraries.config.profile.insert import imgoodat as description_insert
+from libraries.config.profile.select import imgoodat as description_select
+from libraries.config.profile.delete import imgoodat as description_delete
 from libraries.session import open_session
 app = Bottle()
 
 
-@app.route('/config/profile/contactemail', method=['POST', 'GET'])
-@view('config/profile/contactemail.html')
+@app.route('/config/profile/imgoodat', method=['POST', 'GET'])
+@view('config/profile/description.html')
 @login_required
 def profile():
     status = Status()
@@ -28,13 +25,11 @@ def profile():
         if form.validate():
             try:
                 conn = db.engine.connect()
-                conn.execute(contactemail_insert,
-                             contactemail=form.contactemail.data,
-                             pgpmirror=form.pgpmirror.data,
-                             pgpfingerprint=form.pgpfingerprint.data,
+                conn.execute(description_insert,
+                             description=form.description.data,
                              username=username)
                 conn.close()
-                status.success = "Updated Contact Email"
+                status.success = "Updated description"
             except exc.SQLAlchemyError as message:
                 status.danger = message
     if request.method == 'POST' and\
@@ -43,18 +38,16 @@ def profile():
         if blank_form.validate():
             try:
                 conn = db.engine.connect()
-                conn.execute(contactemail_delete,
+                conn.execute(description_delete,
                              username=username)
                 conn.close()
-                status.success = "Deleted Contact Email"
+                status.success = "Deleted description"
             except exc.SQLAlchemyError as message:
                 status.danger = message
     conn = db.engine.connect()
-    result = conn.execute(contactemail_select,
+    result = conn.execute(description_select,
                           username=username)
     conn.close()
     row = result.fetchone()
-    form.contactemail.data = row['contactemail']
-    form.pgpmirror.data = row['pgpmirror']
-    form.pgpfingerprint.data = row['pgpfingerprint']
-    return dict(status=status, form=form)
+    form.description.data = row['description']
+    return dict(status=status, form=form, description_type="imgoodat")

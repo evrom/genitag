@@ -1,0 +1,22 @@
+{% extends 'layouts/interface.html' %}
+{% from 'macros/bootstrapform.html' import render_field %}
+{% block content %}
+
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title"><strong>Resend email verification</strong></h3></div>
+    <div class="panel-body">
+      <form action="/action/resend" method="post">
+	{{ form.csrf_token }}
+	<dl>
+	  {{ render_field(form.email) }}
+	  {{ form.captcha }}
+	</dl>
+	<input type=submit class="btn btn-default" value="Submit">
+      </form>
+      <p><a href="/action/resend">Resend email verification</a></p>
+      <p><a href="/action/resetpassword">Reset Password</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

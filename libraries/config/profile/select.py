@@ -13,7 +13,6 @@ avatar = text(
 contactemail = text(
     "SELECT "
     "COLUMN_GET(info, 'contactemail' AS CHAR) as contactemail, "
-    "COLUMN_GET(info, 'hide' AS INTEGER) as hide, "
     "COLUMN_GET(info, 'pgpmirror' AS CHAR) as pgpmirror, "
     "COLUMN_GET(info, 'pgpfingerprint' AS CHAR) as pgpfingerprint "
     "FROM users "
@@ -61,10 +60,34 @@ name = text(
     ";"
 )
 
+imgoodat = text(
+    "SELECT "
+    "COLUMN_GET(info, 'imgoodat' AS CHAR) as description "
+    "FROM users "
+    "WHERE id=:username"
+    ";"
+)
+
+icareabout = text(
+    "SELECT "
+    "COLUMN_GET(info, 'icareabout' AS CHAR) as description "
+    "FROM users "
+    "WHERE id=:username"
+    ";"
+)
+
+contactme = text(
+    "SELECT "
+    "COLUMN_GET(info, 'contactme' AS CHAR) as description "
+    "FROM users "
+    "WHERE id=:username"
+    ";"
+)
+
 profile = text(
     "SELECT "
     "COLUMN_GET(info, 'contactemail' AS CHAR) as contactemail, "
-    "COLUMN_GET(info, 'hide' AS INTEGER) as hide, "
+    "COLUMN_GET(info, 'imgoodat' AS CHAR) as imgoodat, "
     "COLUMN_GET(info, 'pgpmirror' AS CHAR) as pgpmirror, "
     "COLUMN_GET(info, 'pgpfingerprint' AS CHAR) as pgpfingerprint, "
     "COLUMN_GET(info, 'customavatarurl' AS CHAR) AS customavatarurl, "

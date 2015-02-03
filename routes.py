@@ -11,6 +11,9 @@ from controllers.config.profile.location import app as location
 from controllers.config.profile.twitter import app as twitter
 from controllers.config.profile.github import app as github
 from controllers.config.profile.name import app as name
+from controllers.config.profile.imgoodat import app as imgoodat
+from controllers.config.profile.icareabout import app as icareabout
+from controllers.config.profile.contactme import app as contactme
 from controllers.config.index import app as config_index
 from controllers.config.profile.index import app as config_profile_index
 from controllers.config.skills.index import app as config_skills_index
@@ -22,6 +25,10 @@ from controllers.config.account.password import app as config_account_password
 from controllers.event.index import app as event_index
 from controllers.event.new import app as event_new
 from controllers.event.event_page import app as event_page
+from controllers.action.accountverify import app as accountverify
+from controllers.action.resend import app as resend
+from controllers.action.resetpassword import app as resetpassword
+from controllers.action.reset import app as reset
 routes = []
 
 routes.append(sitemap)
@@ -48,3 +55,10 @@ routes.append(config_account_password)
 routes.append(event_index)
 routes.append(event_new)
 routes.append(event_page)
+routes.append(accountverify)
+routes.append(imgoodat)
+routes.append(icareabout)
+routes.append(contactme)
+routes.append(resend)
+routes.append(resetpassword)
+routes.append(reset)

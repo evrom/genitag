@@ -35,6 +35,9 @@ def profile(username):
     pgpmirror_url = urlparse(row['pgpmirror'])
     pgpmirror_netloc = pgpmirror_url.netloc
     result = dict(
+        imgoodat=row['imgoodat'],
+        icareabout=row['icareabout'],
+        contactme=row['contactme'],
         twittername=row['twittername'],
         githubname=row['githubname'],
         pgpmirror=row['pgpmirror'],

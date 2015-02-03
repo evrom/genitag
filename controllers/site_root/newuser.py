@@ -1,17 +1,17 @@
-from bottle import Bottle, request, redirect
+from bottle import Bottle, request
 from passlib.hash import pbkdf2_sha256
 from passlib.utils import to_bytes
-from libraries.template import view
+from libraries.template import render_template
 from sqlalchemy import exc
 from libraries.database import engine as db
 from libraries.site_root.forms import NewUser as Form
 from libraries.status import Status
 from libraries.site_root.insert import newuser as newuser_query
+from libraries.site_root.messages import new_user as new_user_message
 app = Bottle()
 
 
 @app.route('/newuser', method=['POST', 'GET'])
-@view('newuser.html')
 def newuser():
     status = Status()
     form = Form(request.forms,
@@ -30,8 +30,13 @@ def newuser():
             except exc.SQLAlchemyError as message:
                 status.danger = message
             else:
-                return redirect('/login')
+                new_user_message(username_lower, form.email.data)
+                return render_template(
+                    'newuser_made.html',
+                    status=status,
+                    username=username_lower,
+                    email=form.email.data)
         else:
             if 'captcha' in form.errors:
                 status.warning = form.errors['captcha']
-    return dict(status=status, form=form)
+    return render_template('newuser.html', status=status, form=form)
