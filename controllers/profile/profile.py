@@ -29,12 +29,14 @@ def profile(username):
                         user_skills.c.user_id == username))
     conn.close()
     row = result.fetchone()
-    avatar_url = Gravatar(row['email'], size=96).thumb
     if bool(row['usecustomavatar']):
         avatar_url = row['customavatarurl']+'?size=large'
+    else:
+        avatar_url = Gravatar(row['email'], size=96).thumb
     pgpmirror_url = urlparse(row['pgpmirror'])
     pgpmirror_netloc = pgpmirror_url.netloc
     result = dict(
+        username=username,
         imgoodat=row['imgoodat'],
         icareabout=row['icareabout'],
         contactme=row['contactme'],

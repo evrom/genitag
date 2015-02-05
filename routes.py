@@ -29,14 +29,15 @@ from controllers.action.accountverify import app as accountverify
 from controllers.action.resend import app as resend
 from controllers.action.resetpassword import app as resetpassword
 from controllers.action.reset import app as reset
+from controllers.action.changeemail import app as changeemail
 routes = []
+
 
 routes.append(sitemap)
 routes.append(index)
 routes.append(newuser)
 routes.append(login)
 routes.append(logout)
-routes.append(profile)
 routes.append(avatar)
 routes.append(contactemail)
 routes.append(website)
@@ -62,3 +63,5 @@ routes.append(contactme)
 routes.append(resend)
 routes.append(resetpassword)
 routes.append(reset)
+routes.append(changeemail)
+routes.append(profile)

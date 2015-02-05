@@ -26,7 +26,6 @@ def index_page():
                     users.c.id == username))
         conn.close()
         row = result.fetchone()
-        print(form.current_password.data)
         verify = pbkdf2_sha256.verify(
             form.current_password.data, row['pbkdf2'])
         if verify:

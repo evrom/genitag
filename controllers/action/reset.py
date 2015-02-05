@@ -27,6 +27,8 @@ def newuser():
             status.danger = message
         else:
             status.success = 'Password Changed. Please log in.'
+            return render_template('/status.html',
+                                   status=status)
     return render_template('/action/reset.html',
                            status=status,
                            form=form,

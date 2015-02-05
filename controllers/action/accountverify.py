@@ -9,7 +9,7 @@ app = Bottle()
 
 
 @app.route('/action/accountverify', method=['GET'])
-@view('action/emailverify.html')
+@view('status.html')
 def newuser():
     status = Status()
     token = unsign_message(request.query.token)

@@ -1,9 +1,8 @@
-from wtforms import StringField, validators, PasswordField, HiddenField
+from wtforms import StringField, validators, PasswordField
 from wtfrecaptcha.fields import RecaptchaField
 from libraries.endemic.form import MyBaseForm as Form
 from configuration import config
 
-username_length = int(config['app']['USERNAME_LENGTH'])
 recaptcha_pub_key = config['app']['RECAPTCHA_PUB_KEY']
 recaptcha_priv_key = config['app']['RECAPTCHA_PRIV_KEY']
 
@@ -23,3 +22,9 @@ class Reset(Form):
         validators.EqualTo('confirm', message='Passwords must match')
     ])
     confirm = PasswordField('Repeat Password')
+
+
+class ChangeEmail(Form):
+    password = PasswordField('Password', [
+        validators.Required()
+    ])

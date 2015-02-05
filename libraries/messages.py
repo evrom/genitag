@@ -26,3 +26,17 @@ def reset_password(username, email):
               + username + '\r\n' + 'link: ' + url
     send_email(message, subject, email)
     return None
+
+
+def change_email(username, email):
+    token = sign_message(
+        dict(
+            u=username,
+            e=email))
+    message = "To change your email to " + email +\
+              " go to: " + \
+              "http://genitag.org/action/changeemail?token=" + token
+
+    subject = "Change Genitag Email"
+    send_email(message, subject, email)
+    return None
