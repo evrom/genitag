@@ -6,11 +6,11 @@ from libraries.database import engine as db
 from libraries.template import view
 from libraries.status import Status
 from libraries.authentication import login_required
-from libraries.config.profile.forms import Avatar as Form
+from libraries.forms import Avatar as Form
 from libraries.forms import Blank as BlankForm
-from libraries.config.profile.select import avatar as avatar_select
-from libraries.config.profile.insert import avatar as avatar_insert
-from libraries.config.profile.delete import avatar as avatar_delete
+from libraries.select import avatar as avatar_select
+from libraries.insert import avatar as avatar_insert
+from libraries.delete import avatar as avatar_delete
 from libraries.session import open_session
 app = Bottle()
 

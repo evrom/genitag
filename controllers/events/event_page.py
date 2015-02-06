@@ -1,7 +1,7 @@
 from bottle import Bottle
 from libraries.template import view
 from libraries.status import Status
-from libraries.events.select import event as select
+from libraries.select import event as select
 from libraries.database import engine as db
 app = Bottle()
 

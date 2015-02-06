@@ -2,10 +2,10 @@ from bottle import Bottle, request
 from libraries.database import engine as db, users
 from libraries.template import view
 from libraries.status import Status
-from libraries.action.forms import Resend as Form
+from libraries.forms import SendEmail as Form
 from sqlalchemy import exc
 from sqlalchemy.sql import select
-from libraries.messages import reset_password as reset_password_message
+from libraries.messages import reset_password as send_email
 app = Bottle()
 
 
@@ -30,7 +30,7 @@ def newuser():
                     status.warning = "Email is not verified, " +\
                                      "verify your email first."
                 else:
-                    reset_password_message(row['id'], row['email'])
+                    send_email(row['id'], row['email'])
                     status.success = "Email Sent to " + row['email'] +\
                                      ". The token will expire in one hour."
             else:

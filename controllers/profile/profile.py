@@ -7,7 +7,7 @@ from libraries.database import skill_index, user_skills
 from libraries.regex import username_string
 from libraries.template import view
 from libraries.status import Status
-from libraries.profile.select import profile as profile_select
+from libraries.select import profile as profile_select
 app = Bottle()
 
 

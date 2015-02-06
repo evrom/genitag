@@ -2,10 +2,10 @@ from bottle import Bottle, request
 from libraries.database import engine as db, users
 from libraries.template import view
 from libraries.status import Status
-from libraries.action.forms import Resend as Form
+from libraries.forms import SendEmail as Form
 from sqlalchemy import exc
 from sqlalchemy.sql import select
-from libraries.site_root.messages import new_user as new_user_message
+from libraries.messages import email_verify as send_email
 app = Bottle()
 
 
@@ -29,7 +29,7 @@ def newuser():
                 if row['emailverified'] == True:
                     status.warning = "Email already verified"
                 else:
-                    new_user_message(row['id'], row['email'])
+                    send_email(row['id'], row['email'])
                     status.success = "Email Sent to " + row['email']
             else:
                 status.warning = "Username/Email not in Database"

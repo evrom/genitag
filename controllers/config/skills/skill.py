@@ -6,10 +6,10 @@ from libraries.authentication import login_required
 from libraries.status import Status
 from libraries.database import engine as db
 from libraries.database import skill_index, user_skills
-from libraries.config.skills.forms import Skill as Form
+from libraries.forms import Skill as Form
 from libraries.forms import Blank as BlankForm
 from libraries.session import open_session
-from libraries.config.skills.replace import skill as skill_replace
+from libraries.replace import skill as skill_replace
 app = Bottle()
 
 

@@ -4,7 +4,7 @@ from sqlalchemy.sql import select
 from passlib.hash import pbkdf2_sha256
 from libraries.template import render_template
 from libraries.status import Status
-from libraries.action.forms import ChangeEmail as Form
+from libraries.forms import ChangeEmail as Form
 from sqlalchemy import exc
 from libraries.signer import unsign_message
 app = Bottle()

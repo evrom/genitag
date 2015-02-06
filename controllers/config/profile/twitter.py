@@ -4,11 +4,11 @@ from libraries.database import engine as db
 from libraries.template import view
 from libraries.status import Status
 from libraries.authentication import login_required
-from libraries.config.profile.forms import Twitter as Form
+from libraries.forms import Twitter as Form
 from libraries.forms import Blank as BlankForm
-from libraries.config.profile.insert import twitter as insert
-from libraries.config.profile.select import twitter as select
-from libraries.config.profile.delete import twitter as delete
+from libraries.insert import twitter as insert
+from libraries.select import twitter as select
+from libraries.delete import twitter as delete
 from libraries.session import open_session
 app = Bottle()
 

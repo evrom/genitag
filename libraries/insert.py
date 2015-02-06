@@ -1,5 +1,21 @@
 from sqlalchemy.sql import text
 
+event = text(
+    "INSERT INTO events "
+    "(user_id, title, location, event_datetime, info) "
+    "VALUES "
+    "(:user_id, :title, :location, :event_datetime, "
+    "COLUMN_CREATE('description', :description AS CHAR));"
+)
+
+newuser = text(
+    "INSERT INTO users "
+    "(id, email, pbkdf2, emailverified, info) "
+    "VALUES "
+    "(:username, :email, :pbkdf2, 0, "
+    "COLUMN_CREATE('avatar', NULL AS CHAR));"
+)
+
 avatar = text(
     "UPDATE users SET "
     "info = COLUMN_ADD(info, "
@@ -9,7 +25,6 @@ avatar = text(
     "WHERE id=:username"
     ";"
 )
-
 
 contactemail = text(
     "UPDATE users SET "

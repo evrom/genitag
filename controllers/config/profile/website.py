@@ -5,10 +5,10 @@ from libraries.template import view
 from libraries.status import Status
 from libraries.authentication import login_required
 from libraries.forms import Blank as BlankForm
-from libraries.config.profile.forms import Website as Form
-from libraries.config.profile.insert import website as insert
-from libraries.config.profile.select import website as select
-from libraries.config.profile.delete import website as delete
+from libraries.forms import Website as Form
+from libraries.insert import website as insert
+from libraries.select import website as select
+from libraries.delete import website as delete
 from libraries.session import open_session
 app = Bottle()
 

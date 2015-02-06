@@ -2,13 +2,12 @@ from bottle import Bottle, request
 from datetime import datetime
 from libraries.template import view
 from libraries.status import Status
-from libraries.events.forms import NewEvent as Form
+from libraries.forms import NewEvent as Form
 from libraries.authentication import login_required
 from libraries.database import engine as db
-from libraries.database import events
 from libraries.session import open_session
 from sqlalchemy import exc
-from libraries.events.insert import event as insert
+from libraries.insert import event as insert
 app = Bottle()
 
 

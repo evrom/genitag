@@ -4,7 +4,7 @@ from passlib.hash import pbkdf2_sha256
 from passlib.utils import to_bytes
 from libraries.template import render_template
 from libraries.status import Status
-from libraries.action.forms import Reset as Form
+from libraries.forms import ResetPassword as Form
 from sqlalchemy import exc
 from libraries.signer import unsign_timed_message
 app = Bottle()

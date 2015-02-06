@@ -1,7 +1,7 @@
 from bottle import Bottle
 import random
 from libraries.template import view
-from libraries.site_root.forms import Login as Form
+from libraries.forms import Login as Form
 
 app = Bottle()
 

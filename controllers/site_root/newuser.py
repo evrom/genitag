@@ -4,10 +4,10 @@ from passlib.utils import to_bytes
 from libraries.template import render_template
 from sqlalchemy import exc
 from libraries.database import engine as db
-from libraries.site_root.forms import NewUser as Form
+from libraries.forms import NewUser as Form
 from libraries.status import Status
-from libraries.site_root.insert import newuser as newuser_query
-from libraries.site_root.messages import new_user as new_user_message
+from libraries.insert import newuser as newuser_query
+from libraries.messages import email_verify
 app = Bottle()
 
 
@@ -30,7 +30,7 @@ def newuser():
             except exc.SQLAlchemyError as message:
                 status.danger = message
             else:
-                new_user_message(username_lower, form.email.data)
+                email_verify(username_lower, form.email.data)
                 return render_template(
                     'newuser_made.html',
                     status=status,

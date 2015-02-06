@@ -6,7 +6,7 @@ from sqlalchemy.sql import select
 from libraries.regex import email as EmailRegex,\
     username as UsernameRegex
 from libraries.database import users, engine as db
-from libraries.site_root.forms import Login as Form
+from libraries.forms import Login as Form
 from libraries.status import Status
 from libraries.session import set_session
 app = Bottle()

@@ -4,14 +4,11 @@ from libraries.database import engine as db
 from libraries.template import view
 from libraries.status import Status
 from libraries.authentication import login_required
-from libraries.config.profile.forms import ContactEmail as Form
+from libraries.forms import ContactEmail as Form
 from libraries.forms import Blank as BlankForm
-from libraries.config.profile.insert import\
-    contactemail as contactemail_insert
-from libraries.config.profile.select import\
-    contactemail as contactemail_select
-from libraries.config.profile.delete import\
-    contactemail as contactemail_delete
+from libraries.insert import contactemail as contactemail_insert
+from libraries.select import contactemail as contactemail_select
+from libraries.delete import contactemail as contactemail_delete
 from libraries.session import open_session
 app = Bottle()
 

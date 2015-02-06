@@ -4,11 +4,11 @@ from libraries.database import engine as db
 from libraries.template import view
 from libraries.status import Status
 from libraries.authentication import login_required
-from libraries.config.profile.forms import ImGoodAt as Form
+from libraries.forms import ImGoodAt as Form
 from libraries.forms import Blank as BlankForm
-from libraries.config.profile.insert import imgoodat as description_insert
-from libraries.config.profile.select import imgoodat as description_select
-from libraries.config.profile.delete import imgoodat as description_delete
+from libraries.insert import imgoodat as description_insert
+from libraries.select import imgoodat as description_select
+from libraries.delete import imgoodat as description_delete
 from libraries.session import open_session
 app = Bottle()
 

@@ -5,7 +5,7 @@ from libraries.authentication import login_required
 from libraries.status import Status
 from libraries.database import users, engine as db
 from libraries.session import open_session
-from libraries.config.account.forms import Email as Form
+from libraries.forms import SendEmail as Form
 from libraries.messages import change_email
 app = Bottle()
 
