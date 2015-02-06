@@ -148,7 +148,7 @@
     Add new event
   </div>
   <div class="panel-body">
-    <form action="/event/new" method="post">
+    <form action="/events/new" method="post">
       {{ form.csrf_token }}
       
       {{ render_field(form.title) }}

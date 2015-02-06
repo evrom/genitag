@@ -22,9 +22,9 @@ from controllers.config.skills.skill import app as config_skill
 from controllers.config.account.index import app as config_account_index
 from controllers.config.account.email import app as config_account_email
 from controllers.config.account.password import app as config_account_password
-from controllers.event.index import app as event_index
-from controllers.event.new import app as event_new
-from controllers.event.event_page import app as event_page
+from controllers.events.new import app as event_new
+from controllers.events.event_page import app as event_page
+from controllers.events.upcoming import app as upcoming
 from controllers.action.accountverify import app as accountverify
 from controllers.action.resend import app as resend
 from controllers.action.resetpassword import app as resetpassword
@@ -53,7 +53,6 @@ routes.append(config_skill)
 routes.append(config_account_index)
 routes.append(config_account_email)
 routes.append(config_account_password)
-routes.append(event_index)
 routes.append(event_new)
 routes.append(event_page)
 routes.append(accountverify)
@@ -65,3 +64,4 @@ routes.append(resetpassword)
 routes.append(reset)
 routes.append(changeemail)
 routes.append(profile)
+routes.append(upcoming)

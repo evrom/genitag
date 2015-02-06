@@ -2,17 +2,18 @@ from bottle import Bottle, request
 from datetime import datetime
 from libraries.template import view
 from libraries.status import Status
-from libraries.event.forms import NewEvent as Form
+from libraries.events.forms import NewEvent as Form
 from libraries.authentication import login_required
 from libraries.database import engine as db
 from libraries.database import events
 from libraries.session import open_session
 from sqlalchemy import exc
+from libraries.events.insert import event as insert
 app = Bottle()
 
 
-@app.route('/event/new', method=['GET', 'POST'])
-@view('/event/new.html')
+@app.route('/events/new', method=['GET', 'POST'])
+@view('/events/new.html')
 @login_required
 def index_page():
     status = Status()
@@ -32,12 +33,12 @@ def index_page():
         else:
             try:
                 conn = db.engine.connect()
-                conn.execute(events.insert().values(
-                    user_id=username,
-                    title=form.title.data,
-                    info=form.description.data,
-                    location=form.location.data,
-                    event_datetime=event_datetime))
+                conn.execute(insert,
+                             user_id=username,
+                             title=form.title.data,
+                             description=form.description.data,
+                             location=form.location.data,
+                             event_datetime=event_datetime)
                 conn.close()
                 status.success = "Added Event"
             except exc.SQLAlchemyError as message:

@@ -1,0 +1,36 @@
+{% extends 'layouts/events.html' %}
+{% block head %}
+<style>
+ #time {
+   width: 80px;
+ }
+</style>
+{% endblock %}
+{% block eventcontent %}
+<table>
+  {% set previous_event_date = 0 %}
+  {% for event in result %}
+  {% if  event.event_datetime.date() != previous_event_date %}
+</table>
+<h4>
+  <strong>
+    {{ event.event_datetime.strftime("%A, %B %d") }}
+  </strong>
+</h4>
+<table class="table table-bordered table-striped">
+  {% set previous_event_date = event.event_datetime.date() %}
+  {% endif %}
+  <tr>
+    <td id="time">
+      <small>
+	{{ event.event_datetime.strftime("%I:%M %p") }}
+      </small>
+    </td>
+    <td>
+      <a href="/events/{{ event.id }}/{{ event.title| urlencode }}">{{ event.title }}</a>
+      <p><small>{{ event.location }}</small></p>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

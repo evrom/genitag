@@ -4,25 +4,24 @@ from libraries.status import Status
 from sqlalchemy.sql import select
 from libraries.database import engine as db
 from libraries.database import events
+from datetime import datetime, timedelta
 app = Bottle()
 
 
-@app.route('/event/<id:int>/<:re>', method=['GET', 'POST'])
-@app.route('/event/<id:int>', method=['GET', 'POST'])
-@view('/event/event_page.html')
-def index_page(id):
-    print(id)
+@app.route('/events/upcoming', method=['GET', 'POST'])
+@view('/events/list.html')
+def index_page():
     status = Status()
     conn = db.engine.connect()
     result = conn.execute(
         select([
-            events.c.user_id,
+            events.c.id,
             events.c.location,
-            events.c.info,
-            events.c.timestamp,
             events.c.title,
             events.c.event_datetime]).where(
-                events.c.id == id))
+                events.c.event_datetime >
+                (datetime.utcnow()
+                 - timedelta(seconds=11*3600))).order_by(
+                     events.c.event_datetime).limit(15))
     conn.close()
-    row = result.fetchone()
-    return dict(status=status, event_data=row)
+    return dict(status=status, result=result)

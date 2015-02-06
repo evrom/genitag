@@ -11,9 +11,9 @@ class NewEvent(Form):
                         validators.Length(min=1, max=35)])
     location = StringField('Location',
                            [validators.DataRequired(),
-                            validators.Length(min=1, max=100)])
+                            validators.Length(min=1, max=120)])
     title = StringField('Title',
                         [validators.DataRequired(),
-                         validators.Length(min=1, max=35)])
+                         validators.Length(min=1, max=70)])
     description = TextAreaField('Give details on event',
-                                [validators.Length(min=1, max=350)])
+                                [validators.Length(min=1, max=1200)])
