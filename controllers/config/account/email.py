@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from sqlalchemy.sql import select
 from libraries.template import view
 from libraries.authentication import login_required
@@ -7,13 +7,11 @@ from libraries.database import users, engine as db
 from libraries.session import open_session
 from libraries.forms import SendEmail as Form
 from libraries.messages import change_email
-app = Bottle()
 
 
-@app.route('/config/account/email', method=['GET', 'POST'])
 @view('/config/account/email.html')
 @login_required
-def index_page():
+def email():
     status = Status()
     form = Form(request.forms,
                 captcha={'ip_address': request['REMOTE_ADDR']})

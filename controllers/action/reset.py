@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from libraries.database import engine as db, users
 from passlib.hash import pbkdf2_sha256
 from passlib.utils import to_bytes
@@ -7,11 +7,9 @@ from libraries.status import Status
 from libraries.forms import ResetPassword as Form
 from sqlalchemy import exc
 from libraries.signer import unsign_timed_message
-app = Bottle()
 
 
-@app.route('/action/reset', method=['GET', 'POST'])
-def newuser():
+def reset():
     status = Status()
     form = Form(request.forms)
     token = request.query.token

@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from libraries.database import engine as db, users
 from libraries.template import view
 from libraries.status import Status
@@ -6,12 +6,10 @@ from libraries.forms import SendEmail as Form
 from sqlalchemy import exc
 from sqlalchemy.sql import select
 from libraries.messages import reset_password as send_email
-app = Bottle()
 
 
-@app.route('/action/resetpassword', method=['GET', 'POST'])
 @view('action/resetpassword.html')
-def newuser():
+def resetpassword():
     status = Status()
     form = Form(request.forms,
                 captcha={'ip_address': request['REMOTE_ADDR']})

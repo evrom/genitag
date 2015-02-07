@@ -1,17 +1,13 @@
-from bottle import Bottle
 from gravatar import Gravatar
 from urllib.parse import urlparse
 from sqlalchemy.sql import select
 from libraries.database import engine as db
 from libraries.database import skill_index, user_skills
-from libraries.regex import username_string
 from libraries.template import view
 from libraries.status import Status
 from libraries.select import profile as profile_select
-app = Bottle()
 
 
-@app.route('/profile/<username:re:'+username_string+'>', method='GET')
 @view('profile/user.html')
 def profile(username):
     status = Status()

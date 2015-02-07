@@ -1,16 +1,14 @@
-from bottle import Bottle, request
+from bottle import request
 from libraries.signer import unsign_message
 from libraries.database import engine as db, users
 from libraries.template import view
 from libraries.status import Status
 from sqlalchemy import and_
 from sqlalchemy import exc
-app = Bottle()
 
 
-@app.route('/action/accountverify', method=['GET'])
 @view('status.html')
-def newuser():
+def accountverify():
     status = Status()
     token = unsign_message(request.query.token)
     try:

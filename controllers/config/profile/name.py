@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from sqlalchemy import exc
 from libraries.database import engine as db
 from libraries.template import view
@@ -10,13 +10,11 @@ from libraries.insert import name as name_insert
 from libraries.select import name as name_select
 from libraries.delete import name as name_delete
 from libraries.session import open_session
-app = Bottle()
 
 
-@app.route('/config/profile/name', method=['POST', 'GET'])
 @view('config/profile/name.html')
 @login_required
-def profile():
+def name():
     status = Status()
     form = Form(request.forms)
     username = open_session()['u']

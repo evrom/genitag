@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from sqlalchemy.sql import select
 from passlib.hash import pbkdf2_sha256
 from passlib.utils import to_bytes
@@ -8,13 +8,11 @@ from libraries.status import Status
 from libraries.database import users, engine as db
 from libraries.session import open_session
 from libraries.forms import ChangePassword as Form
-app = Bottle()
 
 
-@app.route('/config/account/password', method=['GET', 'POST'])
 @view('/config/account/password.html')
 @login_required
-def index_page():
+def password():
     status = Status()
     form = Form(request.forms)
     username = open_session()['u']

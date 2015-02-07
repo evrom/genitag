@@ -1,4 +1,4 @@
-from bottle import Bottle, request, redirect
+from bottle import request, redirect
 from datetime import datetime
 from libraries.template import view
 from libraries.status import Status
@@ -8,13 +8,11 @@ from libraries.database import engine as db
 from libraries.session import open_session
 from sqlalchemy import exc
 from libraries.insert import event as insert
-app = Bottle()
 
 
-@app.route('/events/new', method=['GET', 'POST'])
 @view('/events/new.html')
 @login_required
-def index_page():
+def new():
     status = Status()
     form = Form(request.forms)
     username = open_session()['u']

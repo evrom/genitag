@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from passlib.hash import pbkdf2_sha256
 from passlib.utils import to_bytes
 from libraries.template import render_template
@@ -8,10 +8,8 @@ from libraries.forms import NewUser as Form
 from libraries.status import Status
 from libraries.insert import newuser as newuser_query
 from libraries.messages import email_verify
-app = Bottle()
 
 
-@app.route('/newuser', method=['POST', 'GET'])
 def newuser():
     status = Status()
     form = Form(request.forms,

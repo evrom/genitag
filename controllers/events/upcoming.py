@@ -1,16 +1,13 @@
-from bottle import Bottle
 from libraries.template import view
 from libraries.status import Status
 from sqlalchemy.sql import select
 from libraries.database import engine as db
 from libraries.database import events
 from datetime import datetime, timedelta
-app = Bottle()
 
 
-@app.route('/events/upcoming', method=['GET', 'POST'])
 @view('/events/list.html')
-def index_page():
+def upcoming():
     status = Status()
     conn = db.engine.connect()
     result = conn.execute(

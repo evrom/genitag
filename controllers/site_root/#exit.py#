@@ -2,6 +2,6 @@ from bottle import redirect
 from libraries.session import remove_session
 
 
-def logout():
+def exit():
     remove_session()
     return redirect('/')

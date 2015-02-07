@@ -1,4 +1,4 @@
-from bottle import Bottle, request, redirect
+from bottle import request, redirect
 from sqlalchemy.sql import select
 from sqlalchemy import and_, exc
 from libraries.template import view
@@ -10,13 +10,11 @@ from libraries.forms import Skill as Form
 from libraries.forms import Blank as BlankForm
 from libraries.session import open_session
 from libraries.replace import skill as skill_replace
-app = Bottle()
 
 
-@app.route('/config/skills/skill', method=['GET', 'POST'])
 @view('/config/skills/skill.html')
 @login_required
-def index_page():
+def skill():
     form = Form(request.forms)
     status = Status()
     username = open_session()['u']

@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from sqlalchemy import exc
 from gravatar import Gravatar
 from urllib.parse import urlparse
@@ -12,13 +12,11 @@ from libraries.select import avatar as avatar_select
 from libraries.insert import avatar as avatar_insert
 from libraries.delete import avatar as avatar_delete
 from libraries.session import open_session
-app = Bottle()
 
 
-@app.route('/config/profile/avatar', method=['GET', 'POST'])
 @view('config/profile/avatar.html')
 @login_required
-def profile():
+def avatar():
     status = Status()
     form = Form(request.forms)
     username = open_session()['u']

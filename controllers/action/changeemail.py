@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from libraries.database import engine as db, users
 from sqlalchemy.sql import select
 from passlib.hash import pbkdf2_sha256
@@ -7,11 +7,9 @@ from libraries.status import Status
 from libraries.forms import ChangeEmail as Form
 from sqlalchemy import exc
 from libraries.signer import unsign_message
-app = Bottle()
 
 
-@app.route('/action/changeemail', method=['GET', 'POST'])
-def newuser():
+def changeemail():
     status = Status()
     form = Form(request.forms)
     token = request.query.token

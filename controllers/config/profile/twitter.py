@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import request
 from sqlalchemy import exc
 from libraries.database import engine as db
 from libraries.template import view
@@ -10,13 +10,11 @@ from libraries.insert import twitter as insert
 from libraries.select import twitter as select
 from libraries.delete import twitter as delete
 from libraries.session import open_session
-app = Bottle()
 
 
-@app.route('/config/profile/twitter', method=['POST', 'GET'])
 @view('config/profile/twitter.html')
 @login_required
-def profile():
+def twitter():
     status = Status()
     form = Form(request.forms)
     username = open_session()['u']

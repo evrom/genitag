@@ -1,12 +1,11 @@
 from bottle import Bottle
 from configuration import config
-from routes import routes
+from urls import setup_routing
 port = config['app']['port']
 host = config['app']['host']
 development_mode = config['app']['development_mode']
 app = Bottle()
-for route in routes:
-    app.merge(route)
+setup_routing(app)
 if development_mode:
     from bottle import static_file
 
