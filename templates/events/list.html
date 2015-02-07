@@ -25,6 +25,16 @@
       <small>
 	{{ event.event_datetime.strftime("%I:%M %p") }}
       </small>
+      {% if event.canceled  %}
+      <p class="btn btn-danger btn-xs">Canceled</p>
+      {% else %}
+      {% if event.datetime_changed  %}
+      <p class="btn btn-warning btn-xs">New date/time</p>
+      {% endif %}
+      {% if event.location_changed  %}
+      <p class="btn btn-warning btn-xs">New location</p>
+      {% endif %}
+      {% endif %}
     </td>
     <td>
       <a href="/events/{{ event.id }}/{{ event.title| urlencode }}">{{ event.title }}</a>

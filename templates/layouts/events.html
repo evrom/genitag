@@ -29,6 +29,13 @@
 	    </a>
 	  </li>
 	  {% endif %}
+	  {% if event_data %}
+	  {% if session.u == event_data.user_id %}
+	  <li>
+	    <button type="button" class="btn btn-warning btn-sm">Edit, delete, or cancel this event</button>
+	  </li>
+	  {% endif %}
+	  {% endif %}
 	</ul>
       </div>
     </div>

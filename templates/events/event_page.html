@@ -1,5 +1,6 @@
 {% extends 'layouts/events.html' %}
 {% block eventcontent %}
+{{ session.u }}
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">{{ event_data.title }}</h3>
@@ -20,6 +21,24 @@
 	</small>
 	<p>
 	  {{ event_data.location }}
+	</p>
+      </div>
+      <div class="col-md-4">
+	<small>
+	  Status
+	</small>
+	<p>
+	  {% if event_data.canceled  %}
+	  <p class="btn btn-danger btn-xs">Canceled</p>
+	  {% else %}
+	  <p class="btn btn-success btn-xs">Active</p>
+	  {% endif %}
+	  {% if event_data.datetime_changed  %}
+	  <p class="btn btn-warning btn-xs">New date/time</p>
+	  {% endif %}
+	  {% if event_data.location_changed  %}
+	  <p class="btn btn-warning btn-xs">New location</p>
+	  {% endif %}
 	</p>
       </div>
     </div>
@@ -63,4 +82,5 @@
     </div>
   </div>
 </div>
+
 {% endblock %}

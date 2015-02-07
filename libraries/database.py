@@ -61,7 +61,14 @@ events = Table('events', metadata,
                Column('timestamp', DateTime,
                       default=timestamp.utcnow,
                       server_default=func.now()),
+               Column('canceled', Boolean, default=False,
+                      server_default=expression.false()),
+               Column('datetime_changed', Boolean, default=False,
+                      server_default=expression.false()),
+               Column('location_changed', Boolean, default=False,
+                      server_default=expression.false()),
                Column('event_datetime', DateTime))
+
 """
 tasks = Table('tasks', metadata,
               Column('id', Integer, primary_key=True),

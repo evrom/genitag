@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import Bottle, request, redirect
 from datetime import datetime
 from libraries.template import view
 from libraries.status import Status
@@ -32,15 +32,16 @@ def index_page():
         else:
             try:
                 conn = db.engine.connect()
-                conn.execute(insert,
-                             user_id=username,
-                             title=form.title.data,
-                             description=form.description.data,
-                             location=form.location.data,
-                             event_datetime=event_datetime)
+                result = conn.execute(insert,
+                                      user_id=username,
+                                      title=form.title.data,
+                                      description=form.description.data,
+                                      location=form.location.data,
+                                      event_datetime=event_datetime)
                 conn.close()
-                status.success = "Added Event"
             except exc.SQLAlchemyError as message:
                 status.danger = message
+            else:
+                redirect("/events/" + str(result.lastrowid))
     return dict(status=status,
                 form=form)
