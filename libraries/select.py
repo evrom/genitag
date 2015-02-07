@@ -6,9 +6,20 @@ event = text(
     "COLUMN_GET(info, 'canceled' AS INTEGER) as canceled, "
     "COLUMN_GET(info, 'datetime_changed' AS INTEGER) as datetime_changed, "
     "COLUMN_GET(info, 'location_changed' AS INTEGER) as location_changed, "
-    "user_id, title, location, event_datetime, timestamp "
+    "id, user_id, title, location, event_datetime, timestamp "
     "FROM events "
     "WHERE id=:id;"
+)
+
+event_by_user = text(
+    "SELECT "
+    "COLUMN_GET(info, 'description' AS CHAR) as description, "
+    "COLUMN_GET(info, 'canceled' AS INTEGER) as canceled, "
+    "COLUMN_GET(info, 'datetime_changed' AS INTEGER) as datetime_changed, "
+    "COLUMN_GET(info, 'location_changed' AS INTEGER) as location_changed, "
+    "id, user_id, title, location, event_datetime, timestamp "
+    "FROM events "
+    "WHERE id=:id AND user_id=:username;"
 )
 
 profile = text(

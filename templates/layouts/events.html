@@ -32,7 +32,7 @@
 	  {% if event_data %}
 	  {% if session.u == event_data.user_id %}
 	  <li>
-	    <button type="button" class="btn btn-warning btn-sm">Edit, delete, or cancel this event</button>
+	    <a href="/events/{{ event_data.id }}/edit/" class="btn btn-warning btn-sm">Edit, delete, or cancel this event</a>
 	  </li>
 	  {% endif %}
 	  {% endif %}

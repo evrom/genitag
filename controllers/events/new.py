@@ -19,13 +19,10 @@ def index_page():
     form = Form(request.forms)
     username = open_session()['u']
     if request.method == 'POST' and form.validate():
-        print(form.location.data)
-        print(form.title.data)
         try:
             event_datetime = datetime.strptime(
                 form.date.data + ' ' + form.time.data,
                 '%Y/%m/%d %I:%M %p')
-            print(event_datetime)
         except:
             status.danger = "Date or time not in valid format. " + \
                             "Use selector buttons to select date and time"

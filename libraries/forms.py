@@ -181,3 +181,29 @@ class ContactMe(Form):
                                 'to be contacted? How should someone '
                                 'contact you?',
                                 [validators.Length(min=1, max=350)])
+
+
+class EventTitle(Form):
+    title = StringField('Title',
+                        [validators.DataRequired(),
+                         validators.Length(min=1, max=70)])
+
+
+class EventDateTime(Form):
+    date = StringField('Date',
+                       [validators.DataRequired(),
+                        validators.Length(min=1, max=35)])
+    time = StringField('Time (local time for event)',
+                       [validators.DataRequired(),
+                        validators.Length(min=1, max=35)])
+
+
+class EventLocation(Form):
+    location = StringField('Location',
+                           [validators.DataRequired(),
+                            validators.Length(min=1, max=120)])
+
+
+class EventDescription(Form):
+    description = TextAreaField('Give details on event',
+                                [validators.Length(min=1, max=1200)])

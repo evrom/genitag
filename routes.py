@@ -24,6 +24,7 @@ from controllers.config.account.email import app as config_account_email
 from controllers.config.account.password import app as config_account_password
 from controllers.events.new import app as event_new
 from controllers.events.event_page import app as event_page
+from controllers.events.edit import app as event_edit
 from controllers.events.upcoming import app as upcoming
 from controllers.action.accountverify import app as accountverify
 from controllers.action.resend import app as resend
@@ -65,3 +66,4 @@ routes.append(reset)
 routes.append(changeemail)
 routes.append(profile)
 routes.append(upcoming)
+routes.append(event_edit)
