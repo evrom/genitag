@@ -8,3 +8,4 @@ wtforms-recaptcha==0.3.2
 Passlib==1.6.2
 pyGravatar==0.0.6
 mandrill==1.0.57
+gunicorn==19.2.1
