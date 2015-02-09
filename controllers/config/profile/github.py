@@ -10,10 +10,12 @@ from libraries.insert import github as github_insert
 from libraries.select import github as github_select
 from libraries.delete import github as github_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/github.html')
 @login_required
+@csrf
 def github():
     status = Status()
     form = Form(request.forms)

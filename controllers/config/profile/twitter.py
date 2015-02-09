@@ -10,10 +10,12 @@ from libraries.insert import twitter as insert
 from libraries.select import twitter as select
 from libraries.delete import twitter as delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/twitter.html')
 @login_required
+@csrf
 def twitter():
     status = Status()
     form = Form(request.forms)

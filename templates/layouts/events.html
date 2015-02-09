@@ -13,7 +13,7 @@
       <div class="panel-body">
 	<ul class="nav nav-pills nav-stacked">
 	  <li>
-	    <a href="/events/upcoming">
+	    <a href="/events">
 	      upcoming
 	    </a>
 	  </li>
@@ -35,6 +35,11 @@
 	    <a href="/events/{{ event_data.id }}/edit/" class="btn btn-warning btn-sm">Edit, delete, or cancel this event</a>
 	  </li>
 	  {% endif %}
+	  {% endif %}
+	  {% if event_id %}
+	  <li>
+	    <a href="/events/{{ event_id }}/" class="btn btn-success btn-sm">Back to this event page</a>
+	  </li>
 	  {% endif %}
 	</ul>
       </div>

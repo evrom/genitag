@@ -6,8 +6,7 @@ from configuration import config
 secret_key = config['app']['SECRET_KEY']
 session_cookie_name = config['app']['SESSION_COOKIE_NAME']
 session_expiration_seconds = int(config['app']['SESSION_EXPIRATION_SECONDS'])
-
-salt = 'session'
+salt = config['app']['SESSION_SALT']
 
 
 def get_serializer():

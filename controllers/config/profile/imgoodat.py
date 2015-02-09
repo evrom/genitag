@@ -10,10 +10,12 @@ from libraries.insert import imgoodat as description_insert
 from libraries.select import imgoodat as description_select
 from libraries.delete import imgoodat as description_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/description.html')
 @login_required
+@csrf
 def imgoodat():
     status = Status()
     form = Form(request.forms)

@@ -8,8 +8,10 @@ from libraries.forms import NewUser as Form
 from libraries.status import Status
 from libraries.insert import newuser as newuser_query
 from libraries.messages import email_verify
+from libraries.csrf import csrf
 
 
+@csrf
 def newuser():
     status = Status()
     form = Form(request.forms,

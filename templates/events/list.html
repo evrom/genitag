@@ -41,6 +41,13 @@
       <p><small>{{ event.location }}</small></p>
     </td>
   </tr>
+  {% else %}
+  <p>No more events.</p>
   {% endfor %}
 </table>
+<div class="btn-group" role="group" aria-label="...">
+  <a type="button" class="btn btn-default" href="/events?offset={{ offset - 15 }}">Previous</a>
+  <a type="button" class="btn btn-default" href="/events?offset={{ offset + 15 }}">Next</a>
+</div>
 {% endblock %}
+

@@ -8,10 +8,12 @@ from libraries.status import Status
 from libraries.database import users, engine as db
 from libraries.session import open_session
 from libraries.forms import ChangePassword as Form
+from libraries.csrf import csrf
 
 
 @view('/config/account/password.html')
 @login_required
+@csrf
 def password():
     status = Status()
     form = Form(request.forms)

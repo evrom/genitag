@@ -1,4 +1,4 @@
-from bottle import Bottle, request, redirect
+from bottle import request, redirect
 from passlib.hash import pbkdf2_sha256
 from libraries.template import view
 from sqlalchemy import exc
@@ -9,11 +9,11 @@ from libraries.database import users, engine as db
 from libraries.forms import Login as Form
 from libraries.status import Status
 from libraries.session import set_session
-app = Bottle()
+from libraries.csrf import csrf
 
 
-@app.route('/login', method=['GET', 'POST'])
 @view('login.html')
+@csrf
 def login():
     status = Status()
     form = Form(request.forms)

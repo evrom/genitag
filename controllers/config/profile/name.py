@@ -10,10 +10,12 @@ from libraries.insert import name as name_insert
 from libraries.select import name as name_select
 from libraries.delete import name as name_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/name.html')
 @login_required
+@csrf
 def name():
     status = Status()
     form = Form(request.forms)

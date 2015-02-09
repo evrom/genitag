@@ -10,10 +10,12 @@ from libraries.forms import Skill as Form
 from libraries.forms import Blank as BlankForm
 from libraries.session import open_session
 from libraries.replace import skill as skill_replace
+from libraries.csrf import csrf
 
 
 @view('/config/skills/skill.html')
 @login_required
+@csrf
 def skill():
     form = Form(request.forms)
     status = Status()

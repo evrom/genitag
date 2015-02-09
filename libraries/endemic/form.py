@@ -1,27 +1,18 @@
 from wtforms import Form
 from wtforms.csrf.core import CSRF
 from configuration import config
-from bottle import response, request
-import base64
-import os
-secret_key = config['app']['SECRET_KEY']
+from bottle import request
+secret_key = config['app']['COOKIE_SECRET_KEY']
 csrf_cookie_name = config['app']['CSRF_COOKIE_NAME']
-salt = config['app']['CSRF_TOKEN_SALT']
 
 
 class CSRFMethod(CSRF):
-    
     def setup_form(self, form):
         self.csrf_context = form.meta.csrf_context
         return super(CSRFMethod, self).setup_form(form)
 
     def generate_csrf_token(self, csrf_token):
-        token = base64.b64encode(os.urandom(8))
-        response.set_cookie(csrf_cookie_name, token,
-                            secret=secret_key,
-                            path='/')
-        token_unicode = token.decode('UTF-8')
-        return token_unicode
+        return request.csrf_token
 
     def validate_csrf_token(self, form, field):
         cookie_token = request.get_cookie(csrf_cookie_name,

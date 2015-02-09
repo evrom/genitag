@@ -10,10 +10,12 @@ from libraries.insert import website as insert
 from libraries.select import website as select
 from libraries.delete import website as delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/website.html')
 @login_required
+@csrf
 def website():
     status = Status()
     form = Form(request.forms)

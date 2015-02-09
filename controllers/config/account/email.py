@@ -7,10 +7,12 @@ from libraries.database import users, engine as db
 from libraries.session import open_session
 from libraries.forms import SendEmail as Form
 from libraries.messages import change_email
+from libraries.csrf import csrf
 
 
 @view('/config/account/email.html')
 @login_required
+@csrf
 def email():
     status = Status()
     form = Form(request.forms,

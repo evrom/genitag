@@ -10,10 +10,12 @@ from libraries.insert import contactme as description_insert
 from libraries.select import contactme as description_select
 from libraries.delete import contactme as description_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/description.html')
 @login_required
+@csrf
 def contactme():
     status = Status()
     form = Form(request.forms)

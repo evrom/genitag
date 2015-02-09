@@ -10,10 +10,12 @@ from libraries.insert import contactemail as contactemail_insert
 from libraries.select import contactemail as contactemail_select
 from libraries.delete import contactemail as contactemail_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/contactemail.html')
 @login_required
+@csrf
 def contactemail():
     status = Status()
     form = Form(request.forms)

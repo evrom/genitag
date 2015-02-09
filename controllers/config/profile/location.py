@@ -10,10 +10,12 @@ from libraries.insert import location as location_insert
 from libraries.select import location as location_select
 from libraries.delete import location as location_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/location.html')
 @login_required
+@csrf
 def location():
     status = Status()
     form = Form(request.forms)

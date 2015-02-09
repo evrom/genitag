@@ -2,6 +2,9 @@
 {% from 'macros/bootstrapform.html' import render_form %}
 {% block head %}
 <style>
+ #time {
+   width: 80px;
+ }
  body {   
    background: url('/static/backgrounds/{{ photo_number }}.jpg') no-repeat center center fixed; 
    -webkit-background-size: cover;
@@ -21,10 +24,10 @@
    font-size: 40px;
    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
  }
-.guidance {
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-  font-size: 24px;
-}
+ .guidance {
+   box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+   font-size: 24px;
+ }
 </style>
 {% endblock %}
 {% block body %}
@@ -51,19 +54,64 @@
       </ul>
     </div>
     {% else %}
-    <div class="col-md-8">
+    <div class="col-md-6">
       <h1>Genitag</h1>
       <h2>Genital Autonomy Group</h2>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="panel panel-default">
-	<div class="panel-heading"><h3 class="panel-title"><strong>Sign In </strong></h3></div>
+	<div class="panel-heading"><h3 class="panel-title"><strong>Upcoming Events</strong></h3></div>
 	<div class="panel-body">
-	  {{ render_form(form, action_url='/login', action_text='Sign In') }}
+	  <table>
+	    {% set previous_event_date = 0 %}
+	    {% for event in result %}
+	    {% if  event.event_datetime.date() != previous_event_date %}
+	  </table>
+	  <h4>
+	    <strong>
+	      {{ event.event_datetime.strftime("%A, %B %d") }}
+	    </strong>
+	  </h4>
+	  <table class="table table-bordered table-striped">
+	    {% set previous_event_date = event.event_datetime.date() %}
+	    {% endif %}
+	    <tr>
+	      <td id="time">
+		<small>
+		  {{ event.event_datetime.strftime("%I:%M %p") }}
+		</small>
+		{% if event.canceled  %}
+		<p class="btn btn-danger btn-xs">Canceled</p>
+		{% else %}
+		{% if event.datetime_changed  %}
+		<p class="btn btn-warning btn-xs">New date/time</p>
+		{% endif %}
+		{% if event.location_changed  %}
+		<p class="btn btn-warning btn-xs">New location</p>
+		{% endif %}
+		{% endif %}
+	      </td>
+	      <td>
+		<a href="/events/{{ event.id }}/{{ event.title| urlencode }}">{{ event.title }}</a>
+		<p><small>{{ event.location }}</small></p>
+	      </td>
+	    </tr>
+	    {% else %}
+	    <p>No more events.</p>
+	    {% endfor %}
+	  </table>
+	  <a href="/events">More events</a>
 	</div>
-	 <div class="panel-footer">
-	    <a href="/newuser">Register new user</a>
-	 </div>
+	<div class="panel-footer">
+	  <ul class="nav nav-pills nav-justified">
+	    <li>
+	    <a class="login" href="/login">Login</a>  
+	    </li>
+	    <li>
+	      <a href="/newuser">Register new user</a>
+	    </li>
+	  </ul>
+	</div>
       </div>
     </div>
     {% endif %}

@@ -86,8 +86,10 @@ def setup_routing(app):
     app.route('/events/<id:int>/edit/', ['GET', 'POST'], events_edit)
     app.route('/events/<id:int>/<:re>', ['GET'], event_page)
     app.route('/events/<id:int>', ['GET'], event_page)
+    app.route('/events/<id:int>/', ['GET'], event_page)
     app.route('/events/new', ['GET', 'POST'], events_new)
-    app.route('/events/upcoming', ['GET'], upcoming)
+    app.route('/events/', ['GET'], upcoming)
+    app.route('/events', ['GET'], upcoming)
     # /profile
     app.route('/profile/<username:re:'+username_string+'>',
               ['GET'], profile)

@@ -6,9 +6,11 @@ from libraries.forms import SendEmail as Form
 from sqlalchemy import exc
 from sqlalchemy.sql import select
 from libraries.messages import reset_password as send_email
+from libraries.csrf import csrf
 
 
 @view('action/resetpassword.html')
+@csrf
 def resetpassword():
     status = Status()
     form = Form(request.forms,

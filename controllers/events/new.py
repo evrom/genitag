@@ -8,10 +8,12 @@ from libraries.database import engine as db
 from libraries.session import open_session
 from sqlalchemy import exc
 from libraries.insert import event as insert
+from libraries.csrf import csrf
 
 
 @view('/events/new.html')
 @login_required
+@csrf
 def new():
     status = Status()
     form = Form(request.forms)

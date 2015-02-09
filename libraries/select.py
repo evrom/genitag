@@ -11,6 +11,34 @@ event = text(
     "WHERE id=:id;"
 )
 
+previous_events = text(
+    "SELECT "
+    "COLUMN_GET(info, 'canceled' AS INTEGER) as canceled, "
+    "COLUMN_GET(info, 'datetime_changed' AS INTEGER) as datetime_changed, "
+    "COLUMN_GET(info, 'location_changed' AS INTEGER) as location_changed, "
+    "id, title, location, event_datetime "
+    "FROM events "
+    "WHERE event_datetime<:datetime_cutoff "
+    "ORDER BY event_datetime DESC "
+    "LIMIT :limit "
+    "OFFSET :offset"
+    ";"
+)
+
+upcoming_events = text(
+    "SELECT "
+    "COLUMN_GET(info, 'canceled' AS INTEGER) as canceled, "
+    "COLUMN_GET(info, 'datetime_changed' AS INTEGER) as datetime_changed, "
+    "COLUMN_GET(info, 'location_changed' AS INTEGER) as location_changed, "
+    "id, title, location, event_datetime "
+    "FROM events "
+    "WHERE event_datetime>:datetime_cutoff "
+    "ORDER BY event_datetime "
+    "LIMIT :limit "
+    "OFFSET :offset"
+    ";"
+)
+
 event_by_user = text(
     "SELECT "
     "COLUMN_GET(info, 'description' AS CHAR) as description, "

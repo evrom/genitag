@@ -12,10 +12,12 @@ from libraries.select import avatar as avatar_select
 from libraries.insert import avatar as avatar_insert
 from libraries.delete import avatar as avatar_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/avatar.html')
 @login_required
+@csrf
 def avatar():
     status = Status()
     form = Form(request.forms)

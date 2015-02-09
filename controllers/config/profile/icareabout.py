@@ -10,10 +10,12 @@ from libraries.insert import icareabout as description_insert
 from libraries.select import icareabout as description_select
 from libraries.delete import icareabout as description_delete
 from libraries.session import open_session
+from libraries.csrf import csrf
 
 
 @view('config/profile/description.html')
 @login_required
+@csrf
 def icareabout():
     status = Status()
     form = Form(request.forms)
