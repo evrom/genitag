@@ -18,5 +18,5 @@ if development_mode:
         return static_file(filename, root='./docs/_build/html/')
 
 if __name__ == '__main__':
-    app.run(host=host, port=port,
+    app.run(server='waitress', host=host, port=port,
             debug=development_mode, reloader=development_mode)
