@@ -38,7 +38,7 @@ class SendEmail(Form):
     captcha = RecaptchaField(
         public_key=recaptcha_pub_key,
         private_key=recaptcha_priv_key,
-        secure=False)
+        secure=True)
 
 
 class ResetPassword(Form):
@@ -74,7 +74,7 @@ class NewUser(Form):
     captcha = RecaptchaField(
         public_key=recaptcha_pub_key,
         private_key=recaptcha_priv_key,
-        secure=False)
+        secure=True)
 
 
 class Login(Form):
