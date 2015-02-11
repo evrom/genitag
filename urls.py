@@ -4,6 +4,7 @@ from controllers.site_root.index import index
 from controllers.site_root.login import login
 from controllers.site_root.logout import logout
 from controllers.site_root.newuser import newuser
+from controllers.site_root.about import about
 # /action
 from controllers.action.accountverify import accountverify
 from controllers.action.changeemail import changeemail
@@ -48,6 +49,7 @@ def setup_routing(app):
     app.route('/login', ['GET', 'POST'], login)
     app.route('/exit', ['GET'], logout)
     app.route('/newuser', ['POST', 'GET'], newuser)
+    app.route('/about', ['GET'], about)
     # /action
     app.route('/action/accountverify', ['GET'], accountverify)
     app.route('/action/changeemail', ['GET', 'POST'], changeemail)

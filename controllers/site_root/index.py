@@ -4,6 +4,7 @@ from libraries.database import engine as db
 from libraries.select import upcoming_events as upcoming_select
 from datetime import datetime, timedelta
 
+
 @view('index.html')
 def index():
     conn = db.engine.connect()
@@ -13,5 +14,5 @@ def index():
                           limit=3,
                           offset=0)
     conn.close()
-    photo_number = random.randint(1, 11)
+    photo_number = random.randint(1, 9)
     return dict(photo_number=photo_number, result=result)
